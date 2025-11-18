@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <title>MP20 3D Viewer</title>
 
-  <!-- Load <model-viewer> from a reliable CDN -->
+  <!-- Official model-viewer CDN -->
   <script
     type="module"
-    src="https://cdnjs.cloudflare.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js">
+    src="https://unpkg.com/@google/model-viewer@4.1.0/dist/model-viewer.min.js">
   </script>
 
   <style>
     html, body {
       margin: 0;
       height: 100%;
-      background: #111;          /* darker so you can see it clearly */
+      background: #f0f0f0; /* light gray so you see the viewer box */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -24,18 +24,19 @@
       height: 100%;
       max-width: 1000px;
       max-height: 600px;
-      background: #222;
+      background: #ffffff; /* white background behind model */
     }
   </style>
 </head>
 <body>
   <model-viewer
     src="./MP20_SOLID_UNIT.glb"
+    alt="MP20 solid unit"
     camera-controls
     auto-rotate
     shadow-intensity="1"
     exposure="1"
-    ar>
+    environment-image="neutral">
     Your browser does not support the model-viewer web component.
   </model-viewer>
 </body>
