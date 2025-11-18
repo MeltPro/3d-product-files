@@ -14,30 +14,46 @@
     html, body {
       margin: 0;
       height: 100%;
-      background: #f0f0f0; /* light gray so you see the viewer box */
+      background: #202020;  /* dark grey page */
       display: flex;
       justify-content: center;
       align-items: center;
     }
+    #frame {
+      width: 100%;
+      max-width: 1000px;
+      height: 600px;
+      background: #ffffff; /* white box so you can see it clearly */
+      border: 1px solid #444;
+    }
     model-viewer {
       width: 100%;
       height: 100%;
-      max-width: 1000px;
-      max-height: 600px;
-      background: #ffffff; /* white background behind model */
     }
   </style>
 </head>
 <body>
-  <model-viewer
-    src="./MP20_SOLID_UNIT.glb"
-    alt="MP20 solid unit"
-    camera-controls
-    auto-rotate
-    shadow-intensity="1"
-    exposure="1"
-    environment-image="neutral">
-    Your browser does not support the model-viewer web component.
-  </model-viewer>
+  <div id="frame">
+    <model-viewer
+      id="viewer"
+      src="MP20_SOLID_UNIT.glb"
+      alt="MP20 solid unit"
+      camera-controls
+      auto-rotate
+      shadow-intensity="1"
+      exposure="1"
+      environment-image="neutral">
+      Your browser does not support the model-viewer web component.
+    </model-viewer>
+  </div>
+
+  <script>
+    // If something goes wrong loading the model, paint the page red and log it.
+    const v = document.getElementById('viewer');
+    v.addEventListener('error', (e) => {
+      document.body.style.background = 'red';
+      console.error('Model-viewer error:', e);
+    });
+  </script>
 </body>
 </html>
