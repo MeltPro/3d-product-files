@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>MP20 3D Viewer – Minimal</title>
+    <title>MP20 3D Viewer – MP20_SOLID_UNIT</title>
 
     <!-- model-viewer from official CDN -->
     <script
@@ -11,21 +11,28 @@
     </script>
   </head>
 
-  <body style="margin:0;">
-    <!-- Full-viewport viewer, no extra CSS, no wrapper -->
+  <body style="margin:0; background:#111111;">
     <model-viewer
       id="viewer"
-      src="MP20_SOLID_UNIT.glb"
+      src="https://github.com/MeltPro/3d-product-files/raw/refs/heads/main/MP20_SOLID_UNIT.glb"
       alt="MP20 solid unit"
       camera-controls
       auto-rotate
-      style="width:100vw; height:100vh; background:#eeeeee;">
+      rotation-per-second="20deg"
+      environment-image="https://modelviewer.dev/shared-assets/environments/studio_small_09_2k.hdr"
+      exposure="1.0"
+      shadow-intensity="0.7"
+      shadow-softness="0.7"
+      tone-mapping="aces"
+      style="width:100vw; height:100vh;">
     </model-viewer>
 
     <script>
       const v = document.getElementById('viewer');
+
       v.addEventListener('error', (e) => {
         console.error('model-viewer error', e);
-        document.body.style.background = 'red';
-      });
-      v.addEventListener('load', ()
+        document.body.style.background = 'darkred';
+        document.body.insertAdjacentHTML(
+          'beforeend',
+          '<div style="position:fixed;top:10
