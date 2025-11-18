@@ -1,59 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>MP20 3D Viewer</title>
+  <head>
+    <meta charset="utf-8" />
+    <title>MP20 3D Viewer – Minimal</title>
 
-  <!-- Official model-viewer CDN -->
-  <script
-    type="module"
-    src="https://unpkg.com/@google/model-viewer@4.1.0/dist/model-viewer.min.js">
-  </script>
+    <!-- model-viewer from official CDN -->
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer@4.1.0/dist/model-viewer.min.js">
+    </script>
+  </head>
 
-  <style>
-    html, body {
-      margin: 0;
-      height: 100%;
-      background: #202020;  /* dark grey page */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    #frame {
-      width: 100%;
-      max-width: 1000px;
-      height: 600px;
-      background: #ffffff; /* white box so you can see it clearly */
-      border: 1px solid #444;
-    }
-    model-viewer {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-</head>
-<body>
-  <div id="frame">
+  <body style="margin:0;">
+    <!-- Full-viewport viewer, no extra CSS, no wrapper -->
     <model-viewer
       id="viewer"
       src="MP20_SOLID_UNIT.glb"
       alt="MP20 solid unit"
       camera-controls
       auto-rotate
-      shadow-intensity="1"
-      exposure="1"
-      environment-image="neutral">
-      Your browser does not support the model-viewer web component.
+      style="width:100vw; height:100vh; background:#eeeeee;">
     </model-viewer>
-  </div>
 
-  <script>
-    // If something goes wrong loading the model, paint the page red and log it.
-    const v = document.getElementById('viewer');
-    v.addEventListener('error', (e) => {
-      document.body.style.background = 'red';
-      console.error('Model-viewer error:', e);
-    });
-  </script>
-</body>
-</html>
+    <script>
+      const v = document.getElementById('viewer');
+      v.addEventListener('error', (e) => {
+        console.error('model-viewer error', e);
+        document.body.style.background = 'red';
+      });
+      v.addEventListener('load', ()
